@@ -29,3 +29,5 @@ The `rustup` utility is the answer for the first couple questions.
 Yes, the community implemented a script which downloads, installs
 and updates all the tools for your development environment.
 
+docker container create -it --name getting-rusty --hostname getting-rusty -v "$(pwd):/app" -w /app debian:bookworm /usr/bin/env bash
+docker container start -ai getting-rusty
