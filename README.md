@@ -52,9 +52,10 @@ the container.
 ```shell
 $ mkdir ~/path/to/rust/projects
 $ cd ~/path/to/rust/projects
-$ docker container create -it -v "$(pwd):/app" --name getting-rusty \
-  --hostname getting-rusty debian:bookworm /usr/bin/env bash
-$ docker container start -ai getting-rusty
+$ docker container create -it -v "$(pwd):/app" -w /app \
+  --name getting_rusty --hostname getting_rusty \
+  debian:bookworm /usr/bin/env bash
+$ docker container start -ai getting_rusty
 ```
 
 This repository has a script to facilitate running the commands above.
@@ -62,4 +63,41 @@ If you prefer to use it instead of those commands, just type:
 
 ```shell
 $ ./init.sh
+```
+
+After attaching to the container, you can run the first shell command
+listed above which will install the `rustup` utility.
+
+You can use this utility the manage version of your rust tool chain.
+For example, you can use the following command to update to the latest
+version of the Rust compiler and package manager:
+
+```shell
+$ rustup update
+```
+
+Or, if you have given up on Rust, you can uninstall it with:
+
+```shell
+$ rustup self uninstall
+```
+
+Along with the `rustup` utility other two important pieces of software
+are also installed:
+
+ - `rustc`: The Rust compiler.
+ - `cargo`: The Rust package manager.
+
+Those tools will be discussed next.
+
+## The Rust Compiler: `rustc`
+
+This is the most important piece of software downloaded by the `rustup`
+utility. Rust is a compiled language which means that after writing any
+code, you need to compile it before it can be run by the operating
+system. The `rustc` utility is responsible for that. You can check if
+it was correctly installed with:
+
+```shell
+$ rustc --version
 ```

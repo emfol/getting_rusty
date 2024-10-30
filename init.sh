@@ -45,7 +45,7 @@ container_create() {
 
     printf ' > Creating container: %s\n' "${name}" >&2
     docker container create -it --name "${name}" --hostname "${name}" \
-      -v "$(pwd):/app" \
+      -v "$(pwd):/app" -w /app \
       -p '8282:8282/tcp' -p '8282:8282/udp' \
       -p '8283:8283/tcp' -p '8283:8283/udp' \
       "${CONTAINER_IMAGE}" /usr/bin/env bash >&2 || (
