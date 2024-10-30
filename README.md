@@ -86,7 +86,7 @@ Along with the `rustup` utility other two important pieces of software
 are also installed:
 
  - `rustc`: The Rust compiler.
- - `cargo`: The Rust package manager.
+ - `cargo`: The build system and package manager for Rust.
 
 Those tools will be discussed next.
 
@@ -101,3 +101,38 @@ it was correctly installed with:
 ```shell
 $ rustc --version
 ```
+
+You can check if you can compile code with a very simple hello-world
+application. Create a file called "hello_world.rs" like in the example
+below:
+
+```rust
+fn main() {
+  println!("Hello, World!");
+}
+```
+
+Then run the compiler with:
+
+```shell
+$ rustc hello_world.rs
+```
+
+If you check the contents of your current work directory, you should
+see a file named `hello_world` (if you're on a UNIX-like operating
+system). That file is the resulting executable which can be run with:
+
+```shell
+$ ./hello_world
+```
+
+ > If your compiler complains about a missing linker, it means you do
+ > not have the basic development tools for your platform installed.
+ > For the debian container mentioned above, you  can install these
+ > tools with the following command: `apt-get install build-essential`.
+
+## Cargo: The Build System and Package Manager for Rust
+
+For compiling a handful of files, all you need is the `rustc` utility.
+For larger projects though, with hundreds of files and lots of
+dependencies, you need something else: Cargo.
