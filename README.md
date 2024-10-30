@@ -23,11 +23,43 @@ The community behind the Rust Programming Language (which is my current
 focus) seems to have put a lot of effort on responding those questions
 upfront.
 
-## The **rustup** Utility
+## The `rustup` Utility
 
 The `rustup` utility is the answer for the first couple questions.
 Yes, the community implemented a script which downloads, installs
 and updates all the tools for your development environment.
 
-docker container create -it --name getting-rusty --hostname getting-rusty -v "$(pwd):/app" -w /app debian:bookworm /usr/bin/env bash
-docker container start -ai getting-rusty
+Running the `rustup` utility is the first thing we need to do in order
+to get Rust up and running on your machine.
+
+The following one-line shell command will get the job done:
+
+```shell
+$ curl -fsSL https://sh.rustup.rs | sh
+```
+
+I'm usually very picky about blindly running a script directly
+downloaded from the internet to perform changes on the file system
+of my host machine. So, if you're like me, you'll create a container
+before getting your hands dirty.
+
+Let's do that. The following commands are going to create a container
+based on the Debian 12 (Bookworm) image and add a mapping (bind mount)
+of the current work directory to the `/app` directory inside the
+container such that file changes on the host machine are visible inside
+the container.
+
+```shell
+$ mkdir ~/path/to/rust/projects
+$ cd ~/path/to/rust/projects
+$ docker container create -it -v "$(pwd):/app" --name getting-rusty \
+  --hostname getting-rusty debian:bookworm /usr/bin/env bash
+$ docker container start -ai getting-rusty
+```
+
+This repository has a script to facilitate running the commands above.
+If you prefer to use it instead of those commands, just type:
+
+```shell
+$ ./init.sh
+```
