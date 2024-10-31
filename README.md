@@ -175,3 +175,9 @@ with:
 ```shell
 $ ./target/release/my_project
 ```
+
+Another nice thing about the Cargo utility is that you can directly run your project with a single command instead of repetitively running the build + run commands. This can be achieved with:
+
+```shell
+$ cargo run
+```
