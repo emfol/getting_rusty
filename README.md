@@ -4,16 +4,16 @@ Learning a new programming language is more than learning a new syntax.
 Learning the new syntax is, of course, paramount but after writing your
 first lines of code a few questions come up:
 
- - How can I get my hands on the interpreter or compiler for my OS?
- - How do I update my build environment?
- - How do you get the computer to run those instructions?
- - If the language is not an interpreted language, how do I build an
+- How can I get my hands on the interpreter or compiler for my OS?
+- How do I update my build environment?
+- How do you get the computer to run those instructions?
+- If the language is not an interpreted language, how do I build an
    executable out of those pitiful lines of code?
- - How can I reuse code from other people?
- - What is included in the standard library?
- - What are the best libraries to do X and to do Y?
- - How do I manage dependencies?
- - How do I write unit tests?
+- How can I reuse code from other people?
+- What is included in the standard library?
+- What are the best libraries to do X and to do Y?
+- How do I manage dependencies?
+- How do I write unit tests?
 
 I'm probably missing a few questions here but that is enough to get us
 started. The bottom line is: Learning a new language is like migrating
@@ -85,8 +85,8 @@ $ rustup self uninstall
 Along with the `rustup` utility other two important pieces of software
 are also installed:
 
- - `rustc`: The Rust compiler.
- - `cargo`: The build system and package manager for Rust.
+- `rustc`: The Rust compiler.
+- `cargo`: The build system and package manager for Rust.
 
 Those tools will be discussed next.
 
@@ -105,6 +105,8 @@ $ rustc --version
 You can check if you can compile code with a very simple hello-world
 application. Create a file called "hello_world.rs" like in the example
 below:
+
+> Files containing Rust source code must have the `*.rs` extension.
 
 ```rust
 fn main() {
@@ -126,10 +128,10 @@ system). That file is the resulting executable which can be run with:
 $ ./hello_world
 ```
 
- > If your compiler complains about a missing linker, it means you do
- > not have the basic development tools for your platform installed.
- > For the debian container mentioned above, you  can install these
- > tools with the following command: `apt-get install build-essential`.
+> If your compiler complains about a missing linker, it means you do
+> not have the basic development tools for your platform installed.
+> For the debian container mentioned above, you  can install these
+> tools with the following command: `apt-get install build-essential`.
 
 ## Cargo: The Build System and Package Manager for Rust
 
@@ -181,3 +183,73 @@ Another nice thing about the Cargo utility is that you can directly run your pro
 ```shell
 $ cargo run
 ```
+
+## The Rust Programming Language
+
+After a brief introduction of the utilities available in the development
+environment of the Rust Programming Language, it's time to dive into the
+language itself.
+
+### Introduction
+
+Rust is a general-purpose programming language with emphasis in
+performance, concurrency, type and memory safety without relying on
+garbage collection. Rust programs are compiled to machine code which are
+directly executed by the processor of the target platform making it a
+popular choice for systems programming.
+
+Being a systems-level programming language means that Rust deals with
+the same sort of objects that most computers do: characters, numbers
+and references (in spite of the rich set of high-level data structures
+provided by the standard library). The type and size of variables must
+be declared before use and a good understanding of the differences
+between stack and heap allocations is helpful.
+
+### Data Types
+
+Rust is a statically typed language which means that every value in the
+program must be of a certain data type known by the compiler at compile
+time. A set of basic data types is provided by the language which can
+then be combined into compound data types to form complex data
+structures.
+
+### Basic Data Types
+
+Rust has four primary scalar types:
+
+- Integers:
+  - Signed:
+    - i8, i16, i32, i64, i128, isize;
+  - Unsigned:
+    - u8, u16, u32, u64, u128, usize;
+- Floating-Point Numbers:
+  - f32, f64;
+- Booleans:
+  - true, false;
+- Characters:
+  - Single-character literals specified in single quotes (e.g., '🦀')
+    internally represented as 32-bit Unicode Code Point;
+
+### Compound Types
+
+Rust provides the following builtin compound types which always have
+fixed sizes and are allocated on the stack:
+
+#### Tuple
+
+```rust
+let tuple: (i32, f32, char) = (2, 3.14, '🦀');
+```
+
+#### Array
+
+```rust
+let array: [i32; 4] = [1, 2, 3, 4];
+```
+
+### Statements vs Expressions
+
+### Functions
+
+> The `main` function is one of the most important functions in the
+> language since it is the entry point of many programs.
