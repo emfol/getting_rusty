@@ -136,3 +136,42 @@ $ ./hello_world
 For compiling a handful of files, all you need is the `rustc` utility.
 For larger projects though, with hundreds of files and lots of
 dependencies, you need something else: Cargo.
+
+Cargo is the official build system and package manager of the Rust
+programming language. It can be used to initialize new projects,
+download and update dependencies.
+
+A new project can be created with:
+
+```shell
+$ cargo new my_project
+```
+
+The newly created project can be built with:
+
+```shell
+$ cd my_project
+$ cargo build
+```
+
+This will create an executable with the same name of the project in the
+folder `target/debug` which can be run with:
+
+```shell
+$ ./target/debug/my_project
+```
+
+Notice that a debug version is built by default. When you're ready to
+build a release version, you can build with the `--release` parameter:
+
+```shell
+$ cargo build --release
+```
+
+The release version of the new executable will be found at directory
+`target/release` with the same name of the project and it can be run
+with:
+
+```shell
+$ ./target/release/my_project
+```
