@@ -3,20 +3,27 @@ struct Rect {
     height: f32,
 }
 
+impl Rect {
+    fn area(&self) -> f32 {
+        self.width * self.height
+    }
+    fn increase(&mut self, amount: f32) {
+        self.width *= 1.0 + amount;
+        self.height *= 1.0 + amount;
+    }
+    fn print(&self) {
+        println!("Rectangle: {}m x {}m ({}m²)", self.width, self.height, self.area());
+    }
+}
+
 fn main() {
     let width: f32 = 2.5;
     let height: f32 = 3.5;
-    let rect = Rect {
+    let mut rect = Rect {
         width,
         height,
     };
-    print_rectangle(&rect);
-}
-
-fn area(rect: &Rect) -> f32 {
-    rect.width * rect.height
-}
-
-fn print_rectangle(rect: &Rect) {
-    println!("Rectangle: {}m x {}m ({}m²)", rect.width, rect.height, area(rect));
+    rect.print();
+    rect.increase(0.2);
+    rect.print();
 }
