@@ -1,50 +1,46 @@
+
 struct Rect {
-    width: f32,
-    height: f32,
+  width: f32,
+  height: f32,
 }
 
-// Methods
 impl Rect {
-    fn area(&self) -> f32 {
-        self.width * self.height
-    }
-    fn can_hold(&self, rect: &Rect) -> bool {
-        self.width >= rect.width && self.height >= rect.height
-    }
-    fn increase(&mut self, amount: f32) {
-        self.width *= amount + 1.0;
-        self.height *= amount + 1.0;
-    }
-    fn print(&self) {
-        println!("Rectangle: {}m x {}m ({}m²)", self.width, self.height, self.area());
-    }
-}
-
-// Associated Functions
-impl Rect {
-    fn from(width: f32, height: f32) -> Self {
-        Self { width, height }
-    }
-    fn square(side: f32) -> Rect {
-        Self::from(side, side)
-    }
+  fn area(&self) -> f32 {
+    self.width * self.height
+  }
+  fn print(&self) {
+    println!(" > Rect: {}mm x {}mm ({} mm²)", self.width, self.height, self.area());
+  }
+  fn fits_in(&self, rect: &Self) -> bool {
+    self.width <= rect.width && self.height <= rect.height
+  }
+  fn new(width: f32, height: f32) -> Self {
+    Self { width, height }
+  }
 }
 
 fn main() {
-    let (width, height, increase): (f32, f32, f32) = (4.0, 3.0, 0.25);
-    let mut rect = Rect::from(width, height);
-    let other_rects: [Rect; 3] = [
-        Rect::from(1.5, 2.1),
-        Rect::from(8.0, 5.2),
-        Rect::square(2.0),
-    ];
-    rect.print();
-    println!("Increasing main rectangle by {}%...", increase * 100.0);
-    rect.increase(increase);
-    rect.print();
-    for (i, e) in other_rects.iter().enumerate() {
-        println!("Rectangle #{}", i + 1);
-        e.print();
-        println!("Fits in main? {}", rect.can_hold(e));
-    }
+  let mut rect = Rect::new(4.0, 3.0);
+  let other_rects = [
+    Rect::new(2.0, 1.0),
+    Rect::new(16.0, 8.0),
+  ];
+  let args: Vec<String> = std::env::args().collect();
+
+  if args.len() > 1 {
+    rect.width = args[1].parse().unwrap_or(rect.width);
+  }
+
+  if args.len() > 2 {
+    rect.height = args[2].parse().unwrap_or(rect.height);
+  }
+
+  println!("Main Rect:");
+  rect.print();
+
+  for (i, r) in other_rects.iter().enumerate() {
+    println!("Other Rect #{}:", i + 1);
+    r.print();
+    println!("Fits in main? {}", r.fits_in(&rect));
+  }
 }
