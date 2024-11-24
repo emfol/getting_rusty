@@ -14,6 +14,16 @@ impl Rect {
   }
 }
 
+fn f1(s : &String) -> usize {
+  println!(" -> f1 {}", mem::size_of_val(&s));
+  s.len()
+}
+
+fn f2(s: &str) -> usize {
+  println!(" -> f2 {}", mem::size_of_val(&s));
+  s.len()
+}
+
 fn main() {
   let s: String = String::from("Josiane");
   let mut v: Vec<String> = Vec::with_capacity(4);
@@ -46,6 +56,7 @@ fn main() {
   println!(" - Slice of \"x\" is {} bytes", mem::size_of_val(&xs));
   println!(" - Slice of \"y\" is {} bytes", mem::size_of_val(&ys));
   println!(" - \"a\" is {} bytes", mem::size_of_val(&a));
+  println!(" - \"f1()\" + \"f2()\" is {}", f1(&s) + f2(&s[..]));
   for n in x {
     println!(" > {} ({} bytes)", n, mem::size_of_val(&n));
   }
