@@ -1,8 +1,10 @@
+use std::ffi::OsString;
+
 mod oops;
 
 fn main() {
-    let default_path = String::from("user.txt");
-    let mut args = std::env::args();
+    let default_path = OsString::from("user.txt");
+    let mut args = std::env::args_os();
     let path = if args.len() > 1 {
         args.nth(1).unwrap_or(default_path)
     } else  {
