@@ -27,4 +27,12 @@ fn main() {
   let name: Option<String> = if args.len() > 3 { Some(args[3].clone()) } else { None };
   let user = User::new(id, email, name);
   user.print();
+  if let Some(s) = &user.email {
+    println!("Debug! Size of \"s\" is {}...", std::mem::size_of_val(&s));
+    print_dimensions(&s[..]);
+  }
+}
+
+fn print_dimensions(s: &str) {
+  println!(" - Size of \"s\" is {} bytes and length is {}...", std::mem::size_of_val(&s), s.len());
 }
