@@ -25,6 +25,7 @@ fn f2(s: &str) -> usize {
 }
 
 fn main() {
+  let b: Box<f64> = Box::new(3.14);
   let s: String = String::from("Josiane");
   let mut v: Vec<String> = Vec::with_capacity(4);
   let mut d: HashMap<String, String> = HashMap::new();
@@ -45,6 +46,7 @@ fn main() {
   d.insert(String::from("last_name"), String::from("Oliveira"));
   v.push(String::from("Josiane"));
   v.push(String::from("Eric"));
+  println!(" - \"b\" is {} bytes", mem::size_of_val(&b));
   println!(" - \"s\" is {} bytes", mem::size_of_val(&s));
   println!(" - \"v\" is {} bytes (length: {}, capacity: {})", mem::size_of_val(&v), v.len(), v.capacity());
   println!(" - \"d\" is {} bytes", mem::size_of_val(&d));
